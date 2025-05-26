@@ -1,0 +1,87 @@
+<div class="form-container">
+  <h2>{{ isEditing ? 'Edit User' : 'Add New User' }}</h2>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name *</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        [ngClass]="{ 'is-invalid': submitted && f['name'].errors }"
+      />
+      @if (submitted && f['name'].errors) {
+        <div class="error-message">
+          @if (f['name'].errors['required']) {
+            <span>Name is required</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username *</label>
+      <input
+        type="text"
+        id="username"
+        formControlName="username"
+        [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+      />
+      @if (submitted && f['username'].errors) {
+        <div class="error-message">
+          @if (f['username'].errors['required']) {
+            <span>Username is required</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email *</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+      />
+      @if (submitted && f['email'].errors) {
+        <div class="error-message">
+          @if (f['email'].errors['required']) {
+            <span>Email is required</span>
+          } @else if (f['email'].errors['email']) {
+            <span>Email must be a valid email address</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div formGroupName="address" class="address-section">
+      <h3>Address (Optional)</h3>
+
+      <div class="form-group">
+        <label for="street">Street</label>
+        <input type="text" id="street" formControlName="street" />
+      </div>
+
+      <div class="form-group">
+        <label for="suite">Suite</label>
+        <input type="text" id="suite" formControlName="suite" />
+      </div>
+
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" id="city" formControlName="city" />
+      </div>
+
+      <div class="form-group">
+        <label for="zipcode">Zipcode</label>
+        <input type="text" id="zipcode" formControlName="zipcode" />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>
+</div>

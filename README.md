@@ -1,59 +1,82 @@
-# Taxes
+# User Management Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.13.
+This is a simple User Management Application built with Angular that consumes a C# backend API and integrates with JSONPlaceholder for sample data.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- View a list of users
+- Add new users
+- Edit existing users
+- Delete users
+- Form validation for user inputs
 
+## Prerequisites
+
+- Node.js (v14 or higher)
+- Angular CLI (v19 or higher)
+- .NET 6.0 SDK or later (for backend)
+
+## Project Structure
+
+The project is divided into two main parts:
+
+### Frontend (Angular)
+
+- Built with Angular 19
+- Responsive UI with form validation
+- Communicates with the backend API
+
+### Backend (C#)
+
+- C# API that integrates with JSONPlaceholder
+- Provides endpoints for CRUD operations on user data
+
+## How to Run the Application
+
+### Frontend (Angular)
+
+1. Navigate to the project directory:
+```bash
+cd taxes
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+4. Open your browser and navigate to `http://localhost:4200/`
 
-## Code scaffolding
+### Backend (C#)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+The backend implementation details and setup instructions are provided separately.
 
-```bash
-ng generate component component-name
-```
+## API Integration
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The application integrates with JSONPlaceholder's `/users` endpoint to simulate a real backend.
 
-```bash
-ng generate --help
-```
+- GET /users - Get all users
+- GET /users/{id} - Get a specific user
+- POST /users - Create a new user
+- PUT /users/{id} - Update a user
+- DELETE /users/{id} - Delete a user
 
-## Building
+## Form Validation
 
-To build the project run:
+The application implements the following validations:
 
-```bash
-ng build
-```
+- Required fields: name, username, and email
+- Email format validation
+- Display of error messages for invalid inputs
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Technical Details
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Angular 19
+- Reactive Forms for form handling and validation
+- HttpClient for API communication
+- Modular component architecture
