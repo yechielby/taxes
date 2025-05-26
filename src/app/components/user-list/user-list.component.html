@@ -32,9 +32,12 @@
             <td>{{ user.name }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
-            <td class="actions">
-              <button (click)="editUser(user)" class="btn btn-edit">Edit</button>
-              <button (click)="user.id ? deleteUser(user.id) :''" class="btn btn-delete">Delete</button>
+            <td>
+              <div class="actions">
+                <button (click)="viewUserDetails(user)" class="btn btn-view">View</button>
+                <button (click)="editUser(user)" class="btn btn-edit">Edit</button>
+                <button (click)="user.id ? deleteUser(user.id) :''" class="btn btn-delete">Delete</button>
+              </div>
             </td>
           </tr>
         } @empty {
@@ -45,4 +48,10 @@
       </tbody>
     </table>
   </div>
+  @if (viewingUser) {
+    <app-user-details 
+      [user]="viewingUser"
+      (close)="closeUserDetails()">
+    </app-user-details>
+  }
 </div>

@@ -1,0 +1,86 @@
+<div class="user-details-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>User Details</h2>
+      <button class="close-btn" (click)="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      @if (user) {
+        <div class="detail-row">
+          <span class="label">ID:</span>
+          <span class="value">{{ user.id }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Name:</span>
+          <span class="value">{{ user.name }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Username:</span>
+          <span class="value">{{ user.username }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Email:</span>
+          <span class="value">{{ user.email }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Phone:</span>
+          <span class="value">{{ user.phone }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Website:</span>
+          <span class="value">{{ user.website }}</span>
+        </div>
+
+        @if (user.address && (user.address.street || user.address.suite || user.address.city || user.address.zipcode || (user.address.geo && (user.address.geo.lat || user.address.geo.lng)))) {
+          <div class="detail-section">
+            <h3>Address</h3>
+            <div class="detail-row">
+              <span class="label">Street:</span>
+              <span class="value">{{ user.address.street }}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Suite:</span>
+              <span class="value">{{ user.address.suite }}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">City:</span>
+              <span class="value">{{ user.address.city }}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Zipcode:</span>
+              <span class="value">{{ user.address.zipcode }}</span>
+            </div>
+
+            @if (user.address.geo && (user.address.geo.lat || user.address.geo.lng)) {
+              <div class="detail-row">
+                <span class="label">Coordinates:</span>
+                <span class="value">Lat: {{ user.address.geo.lat }}, Lng: {{ user.address.geo.lng }}</span>
+              </div>
+            }
+          </div>
+        }
+
+        @if (user.company && (user.company.name || user.company.catchPhrase || user.company.bs)) {
+          <div class="detail-section">
+            <h3>Company</h3>
+            <div class="detail-row">
+              <span class="label">Name:</span>
+              <span class="value">{{ user.company.name }}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Catch Phrase:</span>
+              <span class="value">{{ user.company.catchPhrase }}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Business:</span>
+              <span class="value">{{ user.company.bs }}</span>
+            </div>
+          </div>
+        }
+      }
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="closeModal()">Close</button>
+    </div>
+  </div>
+</div>

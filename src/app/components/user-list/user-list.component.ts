@@ -4,17 +4,19 @@ import { RouterModule } from '@angular/router';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
 import { UserFormComponent } from '../user-form/user-form.component';
+import { UserDetailsComponent } from '../user-details/user-details.component';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, UserFormComponent],
+  imports: [CommonModule, RouterModule, UserFormComponent, UserDetailsComponent],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
   selectedUser: User | null = null;
+  viewingUser: User | null = null;
   isCreating = false;
   isEditing = false;
 
@@ -39,12 +41,22 @@ export class UserListComponent implements OnInit {
     this.isCreating = true;
     this.isEditing = false;
     this.selectedUser = null;
+    this.viewingUser = null;
   }
 
   editUser(user: User): void {
     this.selectedUser = { ...user };
     this.isEditing = true;
     this.isCreating = false;
+    this.viewingUser = null;
+  }
+
+  viewUserDetails(user: User): void {
+    this.viewingUser = { ...user };
+  }
+
+  closeUserDetails(): void {
+    this.viewingUser = null;
   }
 
   deleteUser(id: number ): void {
@@ -52,6 +64,9 @@ export class UserListComponent implements OnInit {
       this.userService.deleteUser(id).subscribe({
         next: () => {
           this.users = this.users.filter(user => user.id !== id);
+          if (this.viewingUser && this.viewingUser.id === id) {
+            this.viewingUser = null;
+          }
         },
         error: (error) => {
           console.error('Error deleting user:', error);

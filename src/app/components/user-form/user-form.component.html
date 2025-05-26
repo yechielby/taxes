@@ -14,6 +14,10 @@
         <div class="error-message">
           @if (f['name'].errors['required']) {
             <span>Name is required</span>
+          } @else if (f['name'].errors['minlength']) {
+            <span>Name must be at least 2 characters</span>
+          } @else if (f['name'].errors['maxlength']) {
+            <span>Name cannot exceed 100 characters</span>
           }
         </div>
       }
@@ -31,6 +35,8 @@
         <div class="error-message">
           @if (f['username'].errors['required']) {
             <span>Username is required</span>
+          }@else if (f['username'].errors['maxlength']) {
+            <span>Username cannot exceed 50 characters</span>
           }
         </div>
       }
@@ -50,6 +56,32 @@
             <span>Email is required</span>
           } @else if (f['email'].errors['email']) {
             <span>Email must be a valid email address</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" formControlName="phone" />
+      @if (submitted && f['phone'].errors) {
+        <div class="error-message">
+          @if (f['phone'].errors['required']) {
+            <span>Phone is required</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="website">Website</label>
+      <input type="text" id="website" formControlName="website" />
+      @if (submitted && f['website'].errors) {
+        <div class="error-message">
+          @if (f['website'].errors['required']) {
+            <span>Website is required</span>
+          } @else if (f['website'].errors['maxlength']) {
+            <span>Website cannot exceed 100 characters</span>
           }
         </div>
       }
@@ -76,6 +108,39 @@
       <div class="form-group">
         <label for="zipcode">Zipcode</label>
         <input type="text" id="zipcode" formControlName="zipcode" />
+      </div>
+
+      <div formGroupName="geo" class="geo-section">
+        <h4>Geographic Coordinates</h4>
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="lat">Latitude</label>
+            <input type="text" id="lat" formControlName="lat" />
+          </div>
+          <div class="form-group half-width">
+            <label for="lng">Longitude</label>
+            <input type="text" id="lng" formControlName="lng" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div formGroupName="company" class="company-section">
+      <h3>Company (Optional)</h3>
+
+      <div class="form-group">
+        <label for="companyName">Company Name</label>
+        <input type="text" id="companyName" formControlName="name" />
+      </div>
+
+      <div class="form-group">
+        <label for="catchPhrase">Catch Phrase</label>
+        <input type="text" id="catchPhrase" formControlName="catchPhrase" />
+      </div>
+
+      <div class="form-group">
+        <label for="bs">Business</label>
+        <input type="text" id="bs" formControlName="bs" />
       </div>
     </div>
 

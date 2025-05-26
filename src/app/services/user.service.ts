@@ -7,7 +7,9 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'https://jsonplaceholder.typicode.com/users';
+  // private apiUrl = 'https://jsonplaceholder.typicode.com/users';
+  // or
+  private apiUrl = 'https://localhost:7148/api/Users';
 
   constructor(private http: HttpClient) { }
 

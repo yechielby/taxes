@@ -33,14 +33,25 @@ export class UserFormComponent implements OnInit, OnChanges {
 
   initForm(): void {
     this.userForm = this.fb.group({
-      name: ['', [Validators.required]],
-      username: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+      username: ['', [Validators.required, Validators.maxLength(50)]],
       email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required]],
+      website: ['', [Validators.required, Validators.maxLength(100)]],
       address: this.fb.group({
         street: [''],
         suite: [''],
         city: [''],
-        zipcode: ['']
+        zipcode: [''],
+        geo: this.fb.group({
+          lat: [''],
+          lng: ['']
+        })
+      }),
+      company: this.fb.group({
+        name: [''],
+        catchPhrase: [''],
+        bs: ['']
       })
     });
 
@@ -53,11 +64,22 @@ export class UserFormComponent implements OnInit, OnChanges {
         name: this.user.name,
         username: this.user.username,
         email: this.user.email,
+        phone: this.user.phone || '',
+        website: this.user.website || '',
         address: this.user.address || {
           street: '',
           suite: '',
           city: '',
-          zipcode: ''
+          zipcode: '',
+          geo: {
+            lat: '',
+            lng: ''
+          }
+        },
+        company: this.user.company || {
+          name: '',
+          catchPhrase: '',
+          bs: ''
         }
       });
     } else {
@@ -66,7 +88,16 @@ export class UserFormComponent implements OnInit, OnChanges {
           street: '',
           suite: '',
           city: '',
-          zipcode: ''
+          zipcode: '',
+          geo: {
+            lat: '',
+            lng: ''
+          }
+        },
+        company: {
+          name: '',
+          catchPhrase: '',
+          bs: ''
         }
       });
     }
