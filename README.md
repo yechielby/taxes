@@ -56,6 +56,9 @@ ng serve
 
 The backend implementation details and setup instructions are provided separately.
 
+##### Backend - source code
+https://github.com/yechielby/UserManagementApp
+
 ## API Integration
 
 The application integrates with JSONPlaceholder's `/users` endpoint to simulate a real backend.
